@@ -2,3 +2,6 @@ venv/
 reports_pdfs/
 *.xlsx
 resumo.txt
+*.png
+*.pptx
+*.pdf

@@ -71,7 +71,6 @@ for i, chart_path in enumerate(charts):
 prs.save(ppt_path)
 
 # --- 5. Criar PDF com 3 gráficos ---
-# --- 4. Criar PDF com 3 gráficos mantendo proporção ---
 pdf_path = "KPI_Report.pdf"
 c = canvas.Canvas(pdf_path, pagesize=letter)
 c.setFont("Helvetica-Bold", 20)
@@ -107,6 +106,3 @@ c.save()
 
 print(f"✅ PowerPoint saved as {ppt_path}")
 print(f"✅ PDF saved as {pdf_path}")
-
-# --- 5. Limpeza (opcional) ---
-os.remove(chart_path)
