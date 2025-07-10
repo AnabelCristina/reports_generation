@@ -4,16 +4,17 @@ from pptx import Presentation
 from pptx.util import Inches
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+from PIL import Image
 import os
 
-# --- 1. Ler os dados ---
+# --- Ler os dados ---
 data = pd.read_excel("team_kpis_mock_1.xlsx")  # ajuste para seu arquivo real
 
 # 1. Pie chart: Count KPIs by Status
 status_counts = data['Status'].value_counts()
 
 plt.figure(figsize=(6,6))
-plt.pie(status_counts, labels=status_counts.index, autopct='%1.1f%%', startangle=140, colors=['#4CAF50', '#FFC107', '#F44336'])
+plt.pie(status_counts, labels=status_counts.index, autopct='%1.1f%%', startangle=140, colors=[ '#FFC107','#4CAF50', '#F44336'])
 plt.title('KPIs by Status')
 plt.tight_layout()
 plt.savefig("kpis_by_status.png")
@@ -49,7 +50,7 @@ charts = [
     "kpis_by_category.png"
 ]
 
-# --- 3. Criar PowerPoint com 3 gráficos ---
+# --- 4. Criar PowerPoint com 3 gráficos ---
 ppt_path = "KPI_Report.pptx"
 prs = Presentation()
 
@@ -69,16 +70,16 @@ for i, chart_path in enumerate(charts):
     
 prs.save(ppt_path)
 
-# --- 4. Criar PDF com 3 gráficos ---
+# --- 5. Criar PDF com 3 gráficos ---
+# --- 4. Criar PDF com 3 gráficos mantendo proporção ---
 pdf_path = "KPI_Report.pdf"
 c = canvas.Canvas(pdf_path, pagesize=letter)
 c.setFont("Helvetica-Bold", 20)
+width_page, height_page = letter
 
 for i, chart_path in enumerate(charts):
     if i > 0:
-        c.showPage()  # nova página no PDF
-    
-    # Título do gráfico
+        c.showPage()
     if i == 0:
         title = "KPIs by Status"
     elif i == 1:
@@ -88,8 +89,19 @@ for i, chart_path in enumerate(charts):
     
     c.drawString(100, 750, title)
     
-    # Inserir imagem do gráfico (ajuste tamanho e posição)
-    c.drawImage(chart_path, 50, 350, width=500, height=300)
+    # Pega tamanho original da imagem
+    img = Image.open(chart_path)
+    img_width, img_height = img.size
+    
+    max_width = 500
+    scale = max_width / img_width
+    new_width = max_width
+    new_height = img_height * scale
+    
+    x = 50
+    y = height_page - new_height - 100
+    
+    c.drawImage(chart_path, x, y, width=new_width, height=new_height)
 
 c.save()
 
