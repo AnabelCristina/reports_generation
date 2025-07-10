@@ -1,0 +1,4 @@
+venv/
+reports_pdfs/
+*.xlsx
+resumo.txt
