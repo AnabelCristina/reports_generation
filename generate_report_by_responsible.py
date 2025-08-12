@@ -6,7 +6,7 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 import os
 
-input_file = "team_kpis_mock_1.xlsx"
+input_file = "team_kpis_mock.xlsx"
 df = pd.read_excel(input_file)
 
 responsibles = df["Responsible"].dropna().unique()

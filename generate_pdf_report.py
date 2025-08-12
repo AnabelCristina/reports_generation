@@ -10,7 +10,7 @@ path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"  # Ajuste
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 # 1. Ler o Excel com dados
-df = pd.read_excel("team_kpis_mock_1.xlsx")
+df = pd.read_excel("team_kpis_mock.xlsx")
 
 # 2. Template HTML para o relatório
 html_template = """

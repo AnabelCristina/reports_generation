@@ -8,7 +8,7 @@ from PIL import Image
 import os
 
 # --- Ler os dados ---
-data = pd.read_excel("team_kpis_mock_1.xlsx")  # ajuste para seu arquivo real
+data = pd.read_excel("team_kpis_mock.xlsx")  # ajuste para seu arquivo real
 
 # 1. Pie chart: Count KPIs by Status
 status_counts = data['Status'].value_counts()
