@@ -7,10 +7,8 @@ from reportlab.pdfgen import canvas
 from PIL import Image
 import os
 
-# --- Ler os dados ---
-data = pd.read_excel("team_kpis_mock.xlsx")  # ajuste para seu arquivo real
+data = pd.read_excel("mock_data.xlsx") 
 
-# 1. Pie chart: Count KPIs by Status
 status_counts = data['Status'].value_counts()
 
 plt.figure(figsize=(6,6))
@@ -20,7 +18,6 @@ plt.tight_layout()
 plt.savefig("kpis_by_status.png")
 plt.close()
 
-# 2. Bar chart: Number of KPIs by Responsible
 resp_counts = data['Responsible'].value_counts().sort_values(ascending=True)
 
 plt.figure(figsize=(8,5))
@@ -32,7 +29,6 @@ plt.tight_layout()
 plt.savefig("kpis_by_responsible.png")
 plt.close()
 
-# 3. Bar chart: Number of KPIs by Category
 categories_counts = data['Category'].value_counts().sort_values(ascending=True)
 
 plt.figure(figsize=(8,5))
@@ -50,13 +46,11 @@ charts = [
     "kpis_by_category.png"
 ]
 
-# --- 4. Criar PowerPoint com 3 gráficos ---
 ppt_path = "KPI_Report.pptx"
 prs = Presentation()
 
 for i, chart_path in enumerate(charts):
-    slide = prs.slides.add_slide(prs.slide_layouts[5])  # slide em branco
-    # Adicionar título do slide conforme o gráfico
+    slide = prs.slides.add_slide(prs.slide_layouts[5])
     title = slide.shapes.title
     if i == 0:
         title.text = "KPIs by Status"
@@ -65,12 +59,10 @@ for i, chart_path in enumerate(charts):
     else:
         title.text = "KPIs by Category"
 
-    # Adicionar gráfico na posição e tamanho desejados
     slide.shapes.add_picture(chart_path, Inches(1), Inches(1.5), width=Inches(8))
     
 prs.save(ppt_path)
 
-# --- 5. Criar PDF com 3 gráficos ---
 pdf_path = "KPI_Report.pdf"
 c = canvas.Canvas(pdf_path, pagesize=letter)
 c.setFont("Helvetica-Bold", 20)
@@ -88,7 +80,6 @@ for i, chart_path in enumerate(charts):
     
     c.drawString(100, 750, title)
     
-    # Pega tamanho original da imagem
     img = Image.open(chart_path)
     img_width, img_height = img.size
     

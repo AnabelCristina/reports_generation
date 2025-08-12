@@ -2,17 +2,15 @@ import pandas as pd
 import pdfkit
 from jinja2 import Template
 import os
-import platform
+from dotenv import load_dotenv
 
-# Configurar caminho do wkhtmltopdf conforme o sistema operacional
+load_dotenv()
 
-path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"  # Ajuste para o seu caminho!
+path_wkhtmltopdf = os.getenv('PATH_WKHTMLTOPDF')
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
-# 1. Ler o Excel com dados
-df = pd.read_excel("team_kpis_mock.xlsx")
+df = pd.read_excel("mock_data.xlsx")
 
-# 2. Template HTML para o relatório
 html_template = """
 <!DOCTYPE html>
 <html>

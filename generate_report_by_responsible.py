@@ -6,7 +6,7 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.utils import get_column_letter
 import os
 
-input_file = "team_kpis_mock.xlsx"
+input_file = "mock_data.xlsx"
 df = pd.read_excel(input_file)
 
 responsibles = df["Responsible"].dropna().unique()
@@ -109,7 +109,7 @@ for resp in responsibles:
     df_resp = df_resp.drop(columns=["Responsible"])
     apply_dropdown_and_formatting(ws_resp, df_resp, include_responsible=False)
 
-final_file = "kpi_reports_full_with_status_no_responsible_in_individuals.xlsx"
+final_file = "kpi_reports.xlsx"
 wb.save(final_file)
 wb.close()
 os.remove(temp_file)

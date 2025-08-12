@@ -90,6 +90,6 @@ data["Status"] = statuses
 
 df_kpis = pd.DataFrame(data)
 
-df_kpis.to_excel("team_kpis_mock.xlsx", index=False)
+df_kpis.to_excel("mock_data.xlsx", index=False)
 
-print("File 'team_kpis_mock.xlsx' created!")
+print("File 'mock_data.xlsx' created!")
