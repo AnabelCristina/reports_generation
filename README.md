@@ -1,75 +1,59 @@
 # Excel Report Generator
 
-Scripts em Python para gerar diferentes tipos de relatórios a partir de uma planilha Excel. Ideais para automatizar análise de KPIs, gráficos e exportação em PDF.
+Python scripts that create different types of reports from an Excel sheet, that is mocked.
+
 
 ---
 
-## 🚀 Funcionalidades
+## 📦 Requirements
 
-- Geração de KPIs limpos e estruturados.
-- Criação de gráficos baseados nos dados da planilha.
-- Exportação de relatórios em formato PDF.
-- Possibilidade de segmentação por responsáveis.
-- Geração de dados mock para testes.
+- Python 3.8 or higher
+- Python packages (requirements.txt)
+- - **wkhtmltopdf**:[Download e instalação](https://wkhtmltopdf.org/downloads.html)
 
 ---
 
-## 📦 Requisitos
+## ⚙️ Instalation
 
-- Python 3.8 ou superior  
-- Pacotes Python listados em `requirements.txt`, como por exemplo:
-  - pandas
-  - matplotlib
-  - fpdf ou reportlab (para PDF)
-
----
-
-## ⚙️ Instalação
-
-1. **Clone este repositório:**
+1. **Clone:**
    ```bash
    git clone https://github.com/AnabelCristina/reports_generation.git
    cd reports_generation
    ```
 
-2. **Crie e ative um ambiente virtual:**
+2. **Create and activate a virtual environment:**
    ```bash
    python -m venv venv
    source venv/bin/activate      # macOS/Linux
    venv\Scripts\activate         # Windows
    ```
 
-3. **Instale as dependências:**
+3. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
 ---
 
-## ▶️ Como Usar
+## ▶️ How to run
 
-**1. Gerar dados de exemplo**  
+**1. Create mocked sheet**  
 ```bash
 python create_mock_sheet_data.py
 ```
 Gera uma planilha Excel de teste
 
-**2. Criar um relatório de KPIs limpos**  
-```bash
-python generate_cleaned_kpi_report.py
-```
-
-**3. Gerar gráficos com base na planilha**  
+**2. Generate graphics**  
 ```bash
 python generate_graphics_report.py
 ```
 
-**4. Exportar relatório consolidado em PDF**  
+**3. Export data to pdf**  
 ```bash
 python generate_pdf_report.py
 ```
 
-**5. Criar relatório por responsável**  
+**5. Create reports by responsible**  
 ```bash
 python generate_report_by_responsible.py
 ```
