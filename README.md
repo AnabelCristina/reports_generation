@@ -9,7 +9,12 @@ Python scripts that create different types of reports from an Excel sheet, that 
 
 - Python 3.8 or higher
 - Python packages (requirements.txt)
-- - **wkhtmltopdf**:[Download e instalação](https://wkhtmltopdf.org/downloads.html)
+- wkhtmltopdf
+   - [Download](https://wkhtmltopdf.org/downloads.html)
+   - Path should be configured on the `.env` file:
+    ```
+    PATH_WKHTMLTOPDF=C:/path/to/wkhtmltopdf
+    ```
 
 ---
 
